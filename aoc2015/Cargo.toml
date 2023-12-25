@@ -10,4 +10,4 @@ edition = "2021"
 
 [[bin]]
 name = "day1"
-path = "src/day1.rs"
+path = "day1/day1.rs"
