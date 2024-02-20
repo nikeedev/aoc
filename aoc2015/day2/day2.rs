@@ -28,7 +28,6 @@ fn part1and2(input: Vec<&str>) {
                     1 => l.push(char),
                     2 => w.push(char),
                     3 => h.push(char),
-
                     _ => {}
                 }
             }
@@ -40,21 +39,20 @@ fn part1and2(input: Vec<&str>) {
         let w = w.parse::<i32>().unwrap();
         let h = h.parse::<i32>().unwrap();
 
-        line_sum += 2 * l * w + 2 * w * h + 2 * h * l;
+        line_sum += (2 * l * w) + (2 * w * h) + (2 * h * l);
 
         line_sum += [l * w, w * h, h * l].iter().min().unwrap();
 
         total_sum += line_sum;
 
-        line_ribbon_sum += l + l + w + w;
-        line_ribbon_sum += l * w * h;
+        line_ribbon_sum += (2 * l + 2 * w) + (l * w * h);
 
         println!("line_ribbon_sum: {}", line_ribbon_sum);
 
         total_ribbon += line_ribbon_sum;
     }
-    println!("Total sum: {}", total_sum);
     println!("Total ribbon: {}", total_ribbon);
+    println!("Total sum: {}", total_sum);
 }
 
 fn main() {
