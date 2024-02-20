@@ -1,6 +1,6 @@
 // 2015: day 2
 
-use std::{env, fs, process, vec};
+use std::{env, fs, process};
 
 fn part1and2(input: Vec<&str>) {
     // part 1:
@@ -8,7 +8,7 @@ fn part1and2(input: Vec<&str>) {
     let mut total_sum = 0;
     let mut total_ribbon = 0;
 
-    for (i, line) in input.iter().enumerate() {
+    for line in input {
         // println!("line: {}", i + 1);
 
         let mut line_sum = 0;
