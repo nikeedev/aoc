@@ -1,6 +1,6 @@
 // 2015: day 2
 
-use std::{env, fs, process};
+use std::{env, fs, ops::Index, process};
 
 fn part1and2(input: Vec<&str>) {
     // part 1:
@@ -45,9 +45,18 @@ fn part1and2(input: Vec<&str>) {
 
         total_sum += line_sum;
 
-        line_ribbon_sum += (2 * l + 2 * w) + (l * w * h);
+        let mut nums = vec![l, w, h];
 
-        println!("line_ribbon_sum: {}", line_ribbon_sum);
+        let smallest = *nums.iter().min().unwrap();
+        nums.remove(nums.iter().position(|n| *n == smallest).unwrap());
+        let second_smallest = *nums.iter().min().unwrap();
+
+        println!("smallest: {}, second_smallest: {}", smallest, second_smallest);
+        line_ribbon_sum += smallest * 2;
+        line_ribbon_sum += second_smallest * 2;
+        line_ribbon_sum += l * w * h;
+
+        // println!("line_ribbon_sum: {}", line_ribbon_sum);
 
         total_ribbon += line_ribbon_sum;
     }
