@@ -6,25 +6,63 @@ use std::{env, fs, process, vec};
 fn part1and2(input: &str) {
     let chars = input.chars();
 
-    let mut x = 0;
-    let mut y = 0;
+    let mut xs = 250;
+    let mut ys = 250;
+    let mut xr = 250; 
+    let mut yr = 250;
 
-    let mut presents: Vec<Vec<i32>> = vec![vec![0; 50]; 50];
+    let mut presents: Vec<Vec<i32>> = vec![vec![0; 500]; 500];
+
+    presents[xs][ys] += 2;
+
+    let mut robo_turn = false;
 
     for ch in chars {
         match ch { 
-            'v' => y += 1,
-            '^' => y -= 1,
-            '>' => x += 1,
-            '<' => x -= 1,
+            'v' => {
+                if robo_turn {
+                    yr += 1;
+                } else {
+                    ys += 1;
+                }
+            },
+            '^' => {
+                if robo_turn {
+                    yr -= 1;
+                } else {
+                    ys -= 1;
+                }
+            },
+            '>' => {
+                if robo_turn {
+                    xr += 1;
+                } else {
+                    xs += 1;
+                }
+            },
+            '<' => {
+                if robo_turn {
+                    xr -= 1;
+                } else {
+                    xs -= 1;
+                }
+            },
 
             _ => {}
         }
-        presents[x][y] += 1;
-    }
-    println!("x: {} y: {}", x, y);
-    println!("presents: {:?}", presents);
 
+        if robo_turn {
+            presents[xr][yr] += 1;
+        } else {
+            presents[xs][ys] += 1;
+        }
+
+        println!("char: {} - {} - x: {} y: {}", ch, if robo_turn {"robot"} else {"santa"}, if robo_turn { xr } else { xs }, if robo_turn { yr } else { ys });
+        robo_turn = !robo_turn;
+    }
+    // println!("x: {} y: {}", x, y);
+    // println!("presents: {:?}", presents);
+    println!("Houses with miniumum one present: {}", presents.iter().flatten().filter(|&x| *x > 0).count());
 }
 
 fn main() {

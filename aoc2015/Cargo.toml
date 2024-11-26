@@ -3,10 +3,6 @@ name = "aoc2015"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-
 
 [[bin]]
 name = "day1"
@@ -19,3 +15,10 @@ path = "day2/day2.rs"
 [[bin]]
 name = "day3"
 path = "day3/day3.rs"
+
+[[bin]]
+name = "day4"
+path = "day4/day4.rs"
+
+[dependencies]
+rust-crypto = "0.2.36"
